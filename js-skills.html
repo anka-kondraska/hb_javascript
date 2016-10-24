@@ -61,6 +61,8 @@
       margin-right: 1em;
     }
   </style>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
 
@@ -210,7 +212,7 @@
   var msg = "Porcupines are cute";
 //
 //    // do some stuff here to reverse that string into a new variable
-  var revMsg = msg.split("")reverse().join("");
+  var revMsg = msg.split("").reverse().join("");
   var newMsg = revMsg.join("");
   alert(newMsg);
  }
@@ -244,6 +246,9 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // code here for above problem
+
+  $('.tricky-to-find').on('click', function() {alert('Pop-Up Please!');});
+
 </script>
 
 <div class="hint">
@@ -272,6 +277,8 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+
+  $('#kittenz-rule').on('click', function() {$('img#kittenz-rule').attr('src', 'dog.jpg');});
 </script>
 
 <div class="hint">
@@ -306,6 +313,13 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+
+  var slowPorc = function() {
+    $( "#cute-porcupine-image" ).animate({ height: "toggle"}, 7000);
+  }
+
+  $( "#make-a-porcupine").on('click', function(){setTimeout(slowPorc, 1000)});
+
 </script>
 
 <div class="hint">
@@ -350,6 +364,17 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+  var agreeText = document.getElementById('agreeable-form');
+
+  function updateText(evt){
+  var foodT = $("#favorite-food-input").val();
+  var fMsg = "I like " + foodT + ", too.";
+  $('#agreeable-text').html(fMsg);
+  evt.preventDefault();
+  }
+
+  agreeText.addEventListener('submit', updateText);
+
 </script>
 
 <div class="hint">
@@ -380,6 +405,30 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+  var buttonPlay = document.getElementById('play-guessing-game');
+
+  function guessNumber() {
+  var randInt = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+  var playing = true;
+
+  while (playing){
+  var guessStr = prompt('Guess a number:');
+  var guessInt = parseInt(guessStr);
+
+  if (guessInt === randInt) {
+    alert("Congratulations You Win!");
+    var playing = false;
+  } else if (guessInt < randInt) { 
+    alert("Guess too low!");
+    
+  } else {
+    alert("Guess too high!");
+    
+  }}}
+
+
+  buttonPlay.addEventListener('click', guessNumber);
+
 </script>
 
 <div class="hint">
@@ -421,6 +470,48 @@ button.addEventListener('click', reverseString);
 <script>
   "use strict";
   // put your code here
+
+  $('#play-guessing-game-2').click(function() {
+  $('#try-this-number').removeAttr('disabled');
+  $('#number-guessed').removeAttr('disabled');
+   });
+  
+
+  $('#try-this-number').click(function() {
+  $('#play-guessing-game-2').prop('disabled', true);
+   });
+
+  var buttonGuess = document.getElementById('guessing-game-2-form');
+
+  // buttonGuess.addEventListener('submit', guessNumber2);
+  var randInt = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+  var guessNum = $('#number-guessed').val()
+
+  while ( guessNum !== randInt){
+    buttonGuess.addEventListener('submit', guessNumber2);
+
+  } 
+  $("#number-guessing-msg").html("Congratulations You Win!");
+  
+  function guessNumber2(evt) {
+    evt.preventDefault();
+    var guessStr = $("#number-guessed").val();
+    
+        console.log(guessStr, randInt);
+        
+      
+        if (guessStr < randInt) { 
+        $("#number-guessing-msg").html("Guess too low!");
+        $('#number-guessed').val("");
+       
+        } else if (guessStr > randInt) {
+        $("#number-guessing-msg").html("Guess too high!");
+        $('#number-guessed').val("");
+        } 
+    
+}
+
+
 </script>
 
 
